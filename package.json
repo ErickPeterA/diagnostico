@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "concurrently -k \"vite\" \"tsx watch server/index.ts\"",
+    "dev": "concurrently -k \"vite --open\" \"tsx watch server/index.ts\"",
     "build": "tsc -p tsconfig.server.json && vite build",
     "start": "node dist-server/index.js",
     "db:migrate": "tsx server/db/migrate.ts",
