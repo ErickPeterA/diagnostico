@@ -9,6 +9,17 @@ Aplicação Node.js self-hosted para condução e compilação de entrevistas de
 3. Execute `npm run db:migrate` explicitamente.
 4. Execute `npm run dev`.
 
+### Migrations
+
+O Supabase CLI é usado exclusivamente como gerenciador das migrations do PostgreSQL próprio. As migrations novas devem ser criadas em `supabase/migrations` com o nome `YYYYMMDDHHMMSS_descricao.sql`.
+
+```sh
+supabase migration new descricao_da_alteracao
+npm run db:migrate
+```
+
+Não use `schema_migrations`, não insira registros manuais nesse schema/tabela e não altere migrations já aplicadas. O comando `npm run db:migrate` executa somente `supabase db push`; a aplicação nunca altera o schema no startup.
+
 ## Produção
 
 ```sh

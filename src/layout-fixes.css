@@ -1,0 +1,78 @@
+/* Mantém todas as páginas alinhadas ao início da área útil, ao lado do menu. */
+.shell>main{min-width:0;width:100%}
+.content{width:100%;max-width:none;margin:0;padding:24px 30px 48px}
+.analysis-page,.content>.admin-page,.action-page{width:100%;max-width:none;margin:0}
+.content>.data-page{display:block!important;width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important;padding-left:0!important;text-align:left}
+.data-page>.analysis-head,.data-page>.filterbar,.data-page>.data-analysis-tabs,.data-page>.analysis-card,.data-page>.errorbar,.data-page>.successbar{width:100%;max-width:none;margin-left:0;margin-right:0}
+.data-page .data-analysis-tabs,.data-page .comment-head,.data-page .comment-filters{justify-content:flex-start}
+.data-page .data-analysis-tabs>.primary{margin-left:auto}
+.data-page .comment-list,.data-page .response-blocks,.data-page .group-ranking{margin-left:0;margin-right:0}
+.analysis-card,.data-panel,.calendar-panel{max-width:100%}
+
+/* Evita que ações do cabeçalho comprimam ou desloquem o título. */
+.shell>main>header{gap:20px}
+.shell>main>header>div:first-child{min-width:180px}
+.head-actions{min-width:0;justify-content:flex-end}
+.current-diagnostic{min-width:0;max-width:260px}
+.current-diagnostic span{min-width:0}
+.current-diagnostic b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* Componentes de dados ocupam a largura disponível sem desalinhamento. */
+.comment-head{gap:16px;align-items:flex-start;flex-wrap:wrap}
+.comment-filters{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-start}
+.comment-list,.response-blocks{width:100%}
+.response-blocks article{width:100%}
+.ranking-table,.group-ranking{width:100%;overflow-x:auto}
+.ranking-head,.ranking-table>button{min-width:700px}
+.group-ranking-head,.group-ranking>button{min-width:620px}
+
+@media(max-width:1200px){
+ .shell>main>header{height:auto;min-height:82px;padding-top:12px;padding-bottom:12px}
+ .current-diagnostic{display:none}
+ .analysis-metrics{grid-template-columns:repeat(3,1fr)}
+ .lcod-analysis{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:900px){
+ .content{padding:20px 22px 40px}
+ .shell>main>header{padding-left:22px;padding-right:22px}
+ .analysis-grid,.strength-grid{grid-template-columns:1fr}
+ .analysis-card.wide{grid-column:auto}
+ .people-analysis{grid-template-columns:repeat(2,1fr)}
+ .data-analysis-tabs{align-items:flex-start;gap:10px;flex-wrap:wrap}
+ .data-analysis-tabs>.primary{margin-left:0}
+ .comment-filters{width:100%}
+ .comment-filters select{flex:1;min-width:160px}
+}
+
+@media(max-width:700px){
+ .content{padding:14px 12px 32px}
+ .shell>main>header{padding:10px 14px;align-items:flex-start}
+ .shell>main>header>div:first-child{min-width:0;flex:1}
+ .shell>main>header h1{font-size:17px}
+ .head-actions>.primary{font-size:0;width:38px;padding:0;justify-content:center}
+ .head-actions>.primary svg{margin:0}
+ .analysis-head,.adminbar,.action-head{align-items:flex-start;gap:10px}
+ .analysis-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .a-metric{padding:11px;min-width:0}
+ .a-metric strong{font-size:18px}
+ .people-analysis,.lcod-analysis,.action-list{grid-template-columns:1fr}
+ .data-analysis-tabs{display:block}
+ .data-analysis-tabs>div{overflow-x:auto;margin-bottom:8px}
+ .data-analysis-tabs>div button{white-space:nowrap}
+ .data-analysis-tabs>.primary{width:100%;justify-content:center}
+ .comment-head{display:block}
+ .comment-filters{margin-top:12px;display:grid;grid-template-columns:1fr}
+ .comment-filters select{width:100%;min-width:0}
+ .response-question,.typed-answer,.response-summary{padding:11px}
+ .closed-answer{margin:0 11px;align-items:flex-start;flex-wrap:wrap}
+ .closed-answer span{margin-left:0;width:100%}
+ .calendar-panel>header{align-items:center}
+ .notification-popover{position:fixed;left:12px;right:12px;top:72px;width:auto}
+}
+
+@media(max-width:420px){
+ .analysis-metrics{grid-template-columns:1fr}
+ .head-actions{gap:5px}
+ .shell>main>header .header-company{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+}

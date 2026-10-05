@@ -7,8 +7,9 @@
     "dev": "concurrently -k \"vite --open\" \"tsx watch server/index.ts\"",
     "build": "tsc -p tsconfig.server.json && vite build",
     "start": "node dist-server/index.js",
-    "db:migrate": "tsx server/db/migrate.ts",
+    "db:migrate": "supabase db push",
     "db:seed:demo": "tsx server/db/seed-demo.ts",
+    "db:seed:p1": "tsx server/db/seed-p1.ts",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.server.json --noEmit"
   },
   "dependencies": {

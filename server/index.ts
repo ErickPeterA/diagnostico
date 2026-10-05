@@ -5,6 +5,7 @@ import { pool } from './db/pool.js';
 import { api } from './routes.js';
 import { adminApi } from './admin-routes.js';
 import { analyticsApi } from './analytics-routes.js';
+import { actionPlanApi } from './action-plan-routes.js';
 
 const app = express();
 app.disable('x-powered-by');
@@ -25,6 +26,7 @@ app.get('/health', async (_req,res) => {
 });
 app.use('/api',adminApi);
 app.use('/api',analyticsApi);
+app.use('/api',actionPlanApi);
 app.use('/api',api);
 
 const here = path.dirname(fileURLToPath(import.meta.url));
