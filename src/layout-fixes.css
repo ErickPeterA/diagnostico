@@ -1,3 +1,5 @@
+.shell nav button.subnav{width:calc(100% - 12px);margin-left:12px;padding-left:14px}
+@media(max-width:1050px){.shell nav button.subnav{width:100%;margin-left:0;padding-left:12px}}
 /* Mantém todas as páginas alinhadas ao início da área útil, ao lado do menu. */
 .shell>main{min-width:0;width:100%}
 .content{width:100%;max-width:none;margin:0;padding:24px 30px 48px}
