@@ -78,7 +78,7 @@ INSERT INTO questions(id,category_id,code,text,type,target_role,justification_re
 -- Escalas são configuradas no banco; perguntas negativas têm "Não" como favorável.
 INSERT INTO answer_options(id,question_id,label,weight,favorable,sort_order)
 SELECT md5(q.code||'-'||o.label)::uuid,q.id,o.label,o.weight,o.favorable,o.ord FROM questions q CROSS JOIN LATERAL (VALUES
-('Muito insatisfeito',1::numeric,false,1),('Insatisfeito',2,false,2),('Neutro',3,false,3),('Satisfeito',4,true,4),('Muito satisfeito',5,true,5))o(label,weight,favorable,ord)
+('Muito insatisfeito',1::numeric,false,1),('Insatisfeito',2,false,2),('Neutro',3,false,3),('Parcialmente satisfeito',4,false,4),('Satisfeito',5,true,5),('Muito satisfeito',6,true,6))o(label,weight,favorable,ord)
 WHERE q.type='satisfaction_scale' AND q.category_id IN(SELECT id FROM categories WHERE diagnostic_id='00000000-0000-4000-8000-00000000d002');
 INSERT INTO answer_options(id,question_id,label,weight,favorable,sort_order)
 SELECT md5(q.code||'-Sim')::uuid,q.id,'Sim',CASE WHEN q.code IN('P04','P14','P19','P24','P29') THEN 1 ELSE 5 END,q.code NOT IN('P04','P14','P19','P24','P29'),1 FROM questions q WHERE q.type='yes_no' AND q.category_id IN(SELECT id FROM categories WHERE diagnostic_id='00000000-0000-4000-8000-00000000d002');

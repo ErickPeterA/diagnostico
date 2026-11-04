@@ -122,7 +122,7 @@ try{
     const type=q.type??'satisfaction_scale',code=`P${String(index+1).padStart(2,'0')}`;
     const row=await client.query(`INSERT INTO questions(category_id,code,text,type,target_role,justification_required,required,sort_order,active) VALUES($1,$2,$3,$4,$5,$6,true,$7,true) ON CONFLICT(category_id,code) DO UPDATE SET text=excluded.text,type=excluded.type,target_role=excluded.target_role,justification_required=excluded.justification_required,required=true,sort_order=excluded.sort_order,active=true,updated_at=now() RETURNING id`,[categoryIds.get(q.category),code,q.text,type,q.targetRole??null,type!=='open_text',index]);
     if(type==='open_text'){await client.query('DELETE FROM answer_options WHERE question_id=$1',[row.rows[0].id]);continue}
-    const options=[['Muito insatisfeito',1,false],['Insatisfeito',2,false],['Neutro',3,false],['Satisfeito',4,true],['Muito satisfeito',5,true]] as const;
+    const options=[['Muito insatisfeito',1,false],['Insatisfeito',2,false],['Neutro',3,false],['Parcialmente satisfeito',4,false],['Satisfeito',5,true],['Muito satisfeito',6,true]] as const;
     for(const [sortOrder,[label,weight,favorable]] of options.entries())await client.query(`INSERT INTO answer_options(question_id,label,weight,favorable,sort_order,active) VALUES($1,$2,$3,$4,$5,true) ON CONFLICT(question_id,label) DO UPDATE SET weight=excluded.weight,favorable=excluded.favorable,sort_order=excluded.sort_order,active=true`,[row.rows[0].id,label,weight,favorable,sortOrder]);
   }
   await client.query('COMMIT');

@@ -55,7 +55,7 @@ O compose usa a rede externa `infra_backend`, não cria banco e publica a aplica
 - kickoff por diagnóstico com parâmetros e critérios;
 - setores, cargos, lideranças e diretores;
 - categorias ordenáveis, perguntas, opções, pesos e favorabilidade;
-- categorias e tópicos LCOD;
+- agrupadores automáticos de comentários;
 - criação, filtro e retomada de entrevistas anônimas;
 - perfil demográfico sem cadastro nominal;
 - entrevista alimentada pelas configurações persistidas;
@@ -63,7 +63,7 @@ O compose usa a rede externa `infra_backend`, não cria banco e publica a aplica
 
 ### Migration 003
 
-`003_configuration_crud.sql` adiciona os campos administrativos, vínculo de pessoas por diagnóstico, obrigatoriedade de perguntas, ordenação de tópicos LCOD e a constraint `UNIQUE NULLS NOT DISTINCT` que torna o autosave idempotente também para perguntas gerais. Ela também amplia a posição de relacionamento para acomodar até três lideranças e uma diretoria relacionada.
+`003_configuration_crud.sql` adiciona os campos administrativos, vínculo de pessoas por diagnóstico, obrigatoriedade de perguntas, ordenação de agrupadores e a constraint `UNIQUE NULLS NOT DISTINCT` que torna o autosave idempotente também para perguntas gerais. Ela também amplia a posição de relacionamento para acomodar até três lideranças e uma diretoria relacionada.
 
 Integração real de IA, áudio/vídeo e relatórios sofisticados continuam fora desta etapa. O texto original permanece separado e nunca é sobrescrito.
 
@@ -77,7 +77,7 @@ A camada analítica é calculada no servidor e no PostgreSQL, sem transferir a b
 - detalhes de categorias e perguntas;
 - rankings de perguntas e categorias;
 - compilação de lideranças e diretoria;
-- comentários anônimos e LCOD analítico;
+- comentários anônimos e agrupadores analíticos;
 - pontos fortes e pontos de atenção baseados em limites configurados;
 - bloqueio de detalhes quando a amostra é inferior ao mínimo do diagnóstico.
 
@@ -93,6 +93,6 @@ npm run db:seed:demo
 npm run dev
 ```
 
-O comando cria a **Empresa Demonstração**, o **Diagnóstico de Clima 2026**, 30 perguntas, 38 entrevistas em diferentes estados, respostas, comentários tratados e classificações LCOD revisadas. Executar novamente substitui apenas essa demonstração identificada por UUIDs reservados.
+O comando cria a **Empresa Demonstração**, o **Diagnóstico de Clima 2026**, 30 perguntas, 38 entrevistas em diferentes estados, respostas, comentários tratados e agrupadores revisados. Executar novamente substitui apenas essa demonstração identificada por UUIDs reservados.
 
 Por segurança, o comando é bloqueado quando `NODE_ENV=production`. Para uma execução deliberada em um ambiente de demonstração marcado como produção, também é necessário definir `DEMO_SEED_CONFIRM=YES`.
