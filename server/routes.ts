@@ -12,6 +12,8 @@ const answerInput = z.object({ questionId:uuid, answerOptionId:uuid.nullable().o
 function parsed<T>(schema:z.ZodType<T>, body:unknown):T { return schema.parse(body); }
 api.use((req,res,next) => { try { next(); } catch(e) { if(e instanceof z.ZodError) return res.status(400).json({error:'Dados inválidos',fields:e.flatten().fieldErrors}); next(e); } });
 
+api.post('/diagnostics/:id/analysis/groups/regenerate',async(req,res,next)=>{try{const id=uuid.parse(req.params.id);res.json(await updateAutomaticGroups(id))}catch(e){next(e)}});
+
 api.get('/diagnostics',async (_req,res,next) => { try {
   const {rows}=await pool.query(`SELECT d.id,d.name,d.status,d.starts_on,d.ends_on,d.favorable_threshold,d.minimum_sample_size,
     c.name company_name,coalesce(m.interview_count,0)::int interview_count,coalesce(m.answer_count,0)::int answer_count,m.favorability
